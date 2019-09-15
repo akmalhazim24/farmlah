@@ -26,3 +26,18 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth', 'as' => 'auth:'], funct
 	Route::get('/social/redirect', ['uses' => 'SocialiteController@redirectToProvider', 'as' => 'social:redirect']);
 	Route::get('/social/callback', ['uses' => 'SocialiteController@handleProviderCallback', 'as' => 'social:callback']);
 });
+
+Route::group(['prefix' => 'farmer', 'middleware' => ['auth:api']], function() {
+	Route::group(['prefix' => 'tree'], function() {
+		Route::post('/new', 'DurianTreeController@create');
+		Route::get('/', 'DurianTreeController@all');
+
+		Route::get('/{id}/manage', 'DurianTreeController@show');
+		Route::post('/{id}/manage', 'DurianTreeController@update');
+	});
+});
+
+Route::get('/monitoring', 'MonitoringController@create');
+Route::get('/records/{id}', 'MonitoringController@records');
+
+Broadcast::routes(['middleware' => ['auth:api']]);

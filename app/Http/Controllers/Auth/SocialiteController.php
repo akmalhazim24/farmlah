@@ -46,7 +46,7 @@ class SocialiteController extends Controller
     }
 
     protected function validateProvider() {
-    	if(!in_array($this->provider, ['google','github'])) {
+    	if(!in_array($this->provider, ['google','facebook'])) {
     		abort(400, 'Social auth provider not found');
     	}
     }

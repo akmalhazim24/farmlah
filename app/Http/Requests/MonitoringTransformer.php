@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Monitoring;
 
-class LoginRequest extends FormRequest
+class MonitoringTransformer extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +25,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required|string|min:4|max:50'
+            
         ];
     }
 }

@@ -14,10 +14,13 @@ class UserTransformer extends TransformerAbstract
      */
     public function transform(User $user)
     {
+        $avatar = 'https://www.gravatar.com/avatar/'. md5($user->email) . '?s=80&d=mm&r=g';
         return [
+            'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
             'role' => $user->role,
+            'avatar_url' => $avatar,
             'created_at' => $user->created_at,
             'created_at_humanize' => optional($user->created_at)->diffForHumans(),
             'updated_at' => $user->updated_at,
